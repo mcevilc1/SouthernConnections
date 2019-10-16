@@ -1,0 +1,21 @@
+{% extends "logInOutbase.html" %}
+{% import "bootstrap/wtf.html" as wtf %} 
+
+{% block title %}Southern Connections{% endblock %} 
+<style>
+
+</style>
+{% block content %} 
+
+<br>
+<div class="page-header container" align="center">
+    <h3>Log in</h3>
+</div>
+
+<br>
+
+{{ wtf.quick_form(form, button_map={'submit': 'southern'}) }} 
+<div class="container">
+ </p>New User? Sign-up <a href="/sign-up/">Here</a></p>
+</div> 
+{% endblock %}

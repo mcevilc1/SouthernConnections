@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Southern Connections{% endblock %}
+
+{% block page_content %}
+<br><br><br><br>
+
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-2">
+<br><br><br>
+	<a href="/search-meetups" style="color: #02164F;font-family: 'Open Sans Condensed', sans-serif; font-size:20px;">
+	Search All Meetups</a><br><br><br>
+	<a href="/add-meetup" style="color: #02164F;font-family: 'Open Sans Condensed', sans-serif; font-size:20px;">
+	Create New Meetup</a><br><br><br>
+	<a href="/majors" style="color: #02164F;font-family: 'Open Sans Condensed', sans-serif; font-size:20px;">
+	Search Major Groups</a>
+</div>
+{% if my_meetups == []: %}
+<div class="col-md-5">
+<h3 align="center" color="02164F"> Meetups Created by You </h3>
+<br>
+	<table class="table table-hover">
+		<thead style="background-color: #02164F; color: #fff;font-family: 'Open Sans Condensed', sans-serif;">
+	     <tr>
+			<th colspan="4">You haven't created any meetups yet!</th>
+		</tr>
+	</table>
+</div>
+{% else: %}
+<div class="col-md-5">
+<h3 align="center" color="02164F"> Meetups Created by You </h3>
+<br>
+	<table class="table table-hover">
+		<thead style="background-color: #02164F; color: #fff;font-family: 'Open Sans Condensed', sans-serif;">
+	     <tr>
+	      <th>Title</th>
+	      <th>Place</th>
+	      <th>Date</th>
+		  <th>Time</th>
+	     </tr>
+	    </thead>
+	    <tbody>
+	    {% for meetup in my_meetups %}
+	      <tr>
+	        <td><a href="/meetup/{{ meetup[0] }}" style="color: #031B75">{{ meetup[1] }}</a></td>
+	        <td>{{ meetup[2] }}</td>
+	        <td>{{ meetup[3] }}</td>
+		    <td>{{ meetup[4] }}</td>
+	      </tr>
+	    {% endfor %}
+	    </tbody>
+	   </table>
+	  </div>
+	  
+{% endif %}
+
+
+<br><br>
+{% if joined == []: %}
+<div class="col-md-5">
+<h3 align="center" color="02164F"> Meetups You RSVP'd To</h3>
+<br>
+	<table class="table table-hover">
+		<thead style="background-color: #02164F; color: #fff;font-family: 'Open Sans Condensed', sans-serif;">
+	     <tr>
+			<th colspan="4"> You haven't joined any meetups yet!</th>
+		</tr>
+	</table>
+</div>
+
+{% else %}
+<div class="col-md-5">
+<h3 align="center" color="02164F"> Meetups You RSVP'd To</h3>
+<br>
+	<table class="table table-hover">
+		<thead style="background-color: #02164F; color: #fff;font-family: 'Open Sans Condensed', sans-serif;">
+	     <tr>
+	      <th>Title</th>
+	      <th>Place</th>
+	      <th>Date</th>
+		  <th>Time</th>
+	     </tr>
+	    </thead>
+	    <tbody>
+	    {% for join in joined %}
+	      <tr>
+	        <td><a href="/meetup/{{ join[0] }}" style="color: #031B75">{{ join[1] }}</a></td>
+	        <td>{{ join[2] }}</td>
+	        <td>{{ join[3] }}</td>
+		    <td>{{ join[4] }}</td>
+	      </tr>
+	    {% endfor %}
+	    </tbody>
+	   </table>
+	  </div>
+	 </div>
+</div>
+{% endif %}  
+	 
+{% endblock %}

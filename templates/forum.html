@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<head>
+<style>
+
+.users {
+table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+.users td{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+</head>
+<br><br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+    {{ wtf.quick_form(form, button_map={'submit': 'southern'}) }}
+	
+
+        </div> 
+	</div>
+	<div align="right">
+		<a class="btn btn-xl rounded-pill" style="display:inline-block;" href="/create-post">Create Post</a>
+	</div> <br>
+<table class="table table-hover users">
+	<col width="30">
+	<col width="150">
+
+  <tbody>
+  {% if forum_search == None: %}
+  	{% for post in posts %}
+    <tr>
+		<td><img src="{{ post[7] }}" style="width:30%"><br>
+		<a href="{{ url_for('user', username= post[3]) }}" style="color: #031B75">{{ post[9] }}, {{post[8] }}</a></td>
+		
+		
+		<td><a href="{{ url_for('individual_post', postid= post[0]) }}" style="color: #031B75">{{ post[1] }}</a><br>
+		{{ post[2] }} <br><br>
+		<i>{{ post[4] }} at {{ post[5] }}</i></td>
+    </tr>
+	{% endfor %}
+	{% else: %}
+	  {% for forum in forums %}
+    <tr>
+		<td><img src="{{ forum[7] }}" style="width:30%"><br>
+		<a href="{{ url_for('user', username= forum[3]) }}" style="color: #031B75">{{ forum[9] }}, {{forum[8] }}</a></td>
+		
+		
+		<td><a href="{{ url_for('individual_post', postid= forum[0]) }}" style="color: #031B75">{{ forum[1] }}</a><br>
+		{{ forum[2] }} <br><br>
+		<i>{{ forum[4] }} at {{ forum[5] }}</i></td>
+    </tr>
+	{% endfor %}
+	{% endif %}
+  </tbody>
+</table>
+
+{% endblock %}

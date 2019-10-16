@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %} 
+
+
+{% block title %}Southern Connections - Meetups{% endblock %}
+
+{% block page_content %}
+<head>
+<style>
+
+.users {
+table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+.users td{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+</head>
+<br><br><br>
+<div class="page-header">
+    <h3 align="center" style="color: #031B75;">Search Meetups</h3>
+</div>
+<div class="container">
+{{ wtf.quick_form(form, button_map={'submit': 'southern'}) }}
+{% if meetups == []: %}
+<p style="color: #031B75;"><i>Search meetups by title or place</i></p>
+</div>
+	<div class="container">
+	</div>
+	<div class="container">
+	<table class="table table-hover">
+		<thead style="background-color: #02164F; color: #fff;font-family: 'Open Sans Condensed', sans-serif;">
+	     <tr>
+	      <th>Title</th>
+	      <th>Place</th>
+		  <th>Date</th>
+		  <th>Major Group</th>
+	     </tr>
+	    </thead>
+	    <tbody>
+	    {% for meetup in all_meetups %}
+	      <tr>
+	        <td><a href="/meetup/{{ meetup[0] }}" style="color: #031B75">{{ meetup[1] }}</a></td>
+	        <td>{{ meetup[2] }}</td>
+			<td>{{ meetup[3] }}</td>
+			<td><a href="/major/{{ meetup[5] }}" style="color: #031B75"> {{ meetup[9] }} </a></td>
+	      </tr>
+	    {% endfor %}
+	    </tbody>
+	   </table>
+	  </div>
+
+
+{% else: %}
+<br><br>
+	<div class="container">
+	</div>
+	<div class="container">
+	<table class="table table-hover">
+		<thead style="background-color: #02164F; color: #fff;font-family: 'Open Sans Condensed', sans-serif;">
+	     <tr>
+	      <th>Title</th>
+	      <th>Place</th>
+		  <th>Date</th>
+		  <th>Major Group</th>
+	     </tr>
+	    </thead>
+	    <tbody>
+	    {% for meetup in meetups %}
+	      <tr>
+	        <td><a href="/meetup/{{ meetup[0] }}" style="color: #031B75">{{ meetup[1] }}</a></td>
+	        <td>{{ meetup[3] }}</td>
+			<td>{{ meetup[4] }}</td>
+			<td><a href="/major/{{ meetup[7] }}" style="color: #031B75"> {{ meetup[6] }} </a></td>
+	      </tr>
+	    {% endfor %}
+	    </tbody>
+	   </table>
+	  </div>
+{% endif %}
+
+
+{% endblock %}

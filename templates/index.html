@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Southern Connections</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Manjari:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/static/main.css">
+  </head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+	  <a class="navbar-brand js-scroll-trigger" href="/">Southern Connections</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav">
+		  {% if current_user.is_anonymous: %}
+		  <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="#about" style="color:#fff;" >About</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="/login" style="color:#fff;" >Login/Sign Up</a>
+		  </li>
+		  {% else: %}
+		  <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="{{ url_for('user', username = current_user.id) }}" style="color:#fff; ">
+			Profile</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="{{ url_for('my_meetups', username=current_user.id) }}" style="color:#fff; ">
+			My Meetups</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="/forum" style="color:#fff; ">Forum</a>
+		  <li class="nav-item">
+			<a class="nav-link js-scroll-trigger" href="/logout" style="color:#fff;" >Logout</a>
+		  </li>
+		  {% endif %}
+		</ul>
+	  </div>
+	</nav>
+
+<header class="page-header header container-fluid">
+	<div class="overlay"></div>
+	<div class="description">
+  <h1>Welcome to Southern Connections!</h1>
+  <p>Unique to Southern Connecticut State University, Southern Connections allows our students a way to connect to others within their major creating
+  lasting connections. Partnering with Linkedin, it is our hope that those connections continue long after our students graduate.</p>
+  {% if current_user.is_anonymous: %}
+  <button class="btn btn-outline-secondary btn-sm">
+	<a class="nav-link" href="/sign-up">Sign Up</a>
+  </button>
+    <button class="btn btn-outline-secondary btn-sm">
+		<a class="nav-link" href="/login">Login</a>
+	</button>
+	{% endif %}
+</div>
+</header>
+<div class="container features">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <a href="/majors"><h3 class="feature-title">Majors</h3></a>
+      <img src="static/images/logo.jpg" class="img-fluid">
+      <p>A group exists for every major and upon signup, new users are added to their major group so they can start networking right away!
+	  For every group, there are events hosted by the university as a way to get to know your peers, ask questions to those who may know from experience,
+	  and foster the best possible college experience!</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+     <a href="/search-meetups"><h3 class="feature-title">Meetups</h3></a>
+      <img src="/static/images/meetup.jpg" class="img-fluid">
+      <p>Once you have an account with us, check out the meetups available for your major group, as well as others! Join any 
+	  meetups of interest and those of other majors to see what those groups are all about!</p>
+    </div>
+	    <div class="col-lg-4 col-md-4 col-sm-12">
+      <a href="http://www.linkedin.com"><h3 class="feature-title">Linkedin</h3></a>
+      <img src="/static/images/linkedin.jpg" class="img-fluid">
+      <p>Any account with us requires a Linkedin account to keep your lasting connections long after you've graduated Southern! 
+	  We pull some basic information from your Linkedin profile to make setting up your profile with us that much easier. Be sure to keep
+	   your Linkedin information up to date for the best possible experience!</p>
+    </div>
+ <!--   <div class="col-lg-4 col-md-4 col-sm-12">
+		<h3 class="feature-title">Get in Touch!</h3>
+		<div class="form-group">
+		<input type="text" class="form-control" placeholder="Name" name="">
+	</div>
+	<div class="form-group">
+		<input type="email" class="form-control" placeholder="Email Address" name="email">
+	</div>
+	<div class="form-group">
+		<textarea class="form-control" rows="4"></textarea>
+	</div>
+	<input type="submit" class="btn btn-secondary btn-block" value="Send" name="">	
+    </div> -->
+  </div> 
+</div>
+<footer class="page-footer text-center" id="about">
+  <div class="container">
+    <div class="row">
+   <!--   <div class="col-lg-8 col-md-8 col-sm-12">
+      <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+      <p>Southern Connections</p>
+      <p>text.</p>
+    </div> -->
+    <div class="col">
+      <h6 class="text-uppercase font-weight-bold text-center">Contact</h6>
+      <p>501 Crescent Street, New Haven, CT 06515&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;admin@southernct.edu&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(203) 392-SCSU</p>
+    </div>
+  </div>
+  <div class="footer-copyright text-center">© 2019 Southern Connecticut State University.</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="/static/main.js"></script>
+</body>
+
+</html>

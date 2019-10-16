@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Southern Connections{% endblock %}
+
+{% block content %}
+<br><br><br><br>
+<div class="container">
+    <h3 style="color:#02164F; font-family:Open Sans Condensed, sans-serif;">Create New Post</h3>
+	<br>
+    <div class="row">
+        <div class="col-sm-6">
+    {{ wtf.quick_form(form, button_map={'submit': 'southern'}) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

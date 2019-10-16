@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Southern Connections{% endblock %}
+
+{% block content %}
+<br><br><br>
+<div class="container">
+	<div class="page-header">
+		<h3 style="color: #031B75;">Update Your Profile</h3>
+		<br>
+	</div>
+	<p style="color: #031B75; font-size:17px"><b>Email: </b><i>{{ email }}</i></p>
+	<div class="row">
+		<div class="col-md-6">
+    {{ wtf.quick_form(form, button_map={'submit': 'southern'}) }}
+		</div>
+	</div>
+	<br>
+	<a class="btn btn-xl rounded-pill" style="display:inline-block" href="{{ url_for('user', username=current_user.id) }}">Cancel</a>
+</div>
+
+{% endblock %}
